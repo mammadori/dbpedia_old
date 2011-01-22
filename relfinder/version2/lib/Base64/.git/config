@@ -1,0 +1,9 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+[remote "origin"]
+	url = git@github.com:spjwebster/as3base64.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
