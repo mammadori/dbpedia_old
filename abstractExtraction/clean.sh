@@ -72,16 +72,9 @@ do
 done
 
 
-# ------------ new for DBpedia 3.6 ------------
-# delete these three columns, because they are not in categorylinks.sql files
-# (check in categorylinks how many columns get inserted!)
-grep -P '(?:cl_sortkey_prefix|cl_collation|cl_type)' $DATADIR/tables.sql --invert-match \
-     | sed -e 's/cl_timestamp timestamp NOT NULL,/cl_timestamp timestamp NOT NULL/' \
-     >$DATADIR/clean.tables.sql
-
 echo "splitting tables.sql into tables-no-indexes.sql and tables-only-indexes.sql..."
-grep 'CREATE .*INDEX' $DATADIR/clean.tables.sql                >$DATADIR/tables-only-indexes.sql
-grep 'CREATE .*INDEX' $DATADIR/clean.tables.sql --invert-match >$DATADIR/tables-no-indexes.sql
+grep 'CREATE .*INDEX' $DATADIR/tables.sql                >$DATADIR/tables-only-indexes.sql
+grep 'CREATE .*INDEX' $DATADIR/tables.sql --invert-match >$DATADIR/tables-no-indexes.sql
 
 
 echo --------------------------------------------------------------------
